@@ -17,7 +17,7 @@ pnpm install
 create an `.env` file with the following:
 
 ```bash
-cp .env.sample .env
+cp .env.example .env
 ```
 
 ---
@@ -39,5 +39,5 @@ pnpm install
 create an `.env` file with the following:
 
 ```bash
-cp .env.sample .env
+cp .env.example .env
 ```
