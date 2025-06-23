@@ -1,0 +1,32 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: chat_db
+    volumes:
+      - ./.dockers/mongodb_data:/data/db
+      - ./.dockers/mongodb_config:/data/configdb
+    networks:
+      - websocket-network
+
+  # Add your existing services here if any
+  # websocket-service:
+  #   build: ./service
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - mongodb
+  #   environment:
+  #     - MONGODB_URI=mongodb://admin:password@mongodb:27017/chat_db?authSource=admin
+  #   networks:
+  #     - websocket-network
+
+networks:
+  websocket-network:
+    driver: bridge

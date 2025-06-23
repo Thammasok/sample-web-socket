@@ -3,3 +3,6 @@ service/.env
 
 chat-app/node_modules
 chat-app/.env
+
+# Docker
+.dockers/*
