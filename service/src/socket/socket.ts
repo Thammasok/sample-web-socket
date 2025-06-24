@@ -3,7 +3,7 @@ import { Server as HttpServer } from 'node:http'
 
 export default function socket(server: HttpServer): SocketIO {
   const io = new SocketIO(server, {
-    path: '/connection',
+    path: '/socket/v1/connection',
     cors: {
       origin: '*',
       methods: ['GET', 'POST'],
