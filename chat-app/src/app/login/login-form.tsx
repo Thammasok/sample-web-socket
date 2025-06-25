@@ -1,13 +1,18 @@
+import axios, { AxiosError } from 'axios'
 import { useState } from 'react'
 import { toast } from 'sonner'
 import { Link } from 'react-router-dom'
+import { config } from '@/config'
 import { cn } from '@/lib/utils'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import useAuthGuard from '@/hooks/use-auth-guard'
 
 export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) {
+  useAuthGuard()
+
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -20,19 +25,37 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
     })
   }
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (form.email === '' || form.password === '') {
-      toast.error('Please fill all fields')
-      return
-    }
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault()
+      if (form.email === '' || form.password === '') {
+        toast.error('Please fill all fields')
+        return
+      }
 
-    if (form.password === '123456') {
-      toast.error('Just kidding, please use a real password 😛')
-      return
-    }
+      if (form.password === '123456') {
+        toast.error('Just kidding, please use a real password 😛')
+        return
+      }
 
-    console.log(form)
+      const response = await axios.post(`${config.apiUrl}/api/v1/login`, form)
+
+      if (response.status === 201) {
+        localStorage.setItem('user', JSON.stringify(response.data.data))
+
+        toast.success('Account created successfully. You can now login.')
+
+        window.location.href = '/'
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data.message)
+      } else if (error instanceof Error) {
+        toast.error(error.message)
+      } else {
+        toast.error('Something went wrong')
+      }
+    }
   }
 
   return (
