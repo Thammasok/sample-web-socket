@@ -78,6 +78,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
                   autoComplete='off'
                   autoSave='off'
                   onChange={onChangeInput}
+                  autoFocus
                   required
                 />
               </div>

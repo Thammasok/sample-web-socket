@@ -80,6 +80,7 @@ export function RegisterForm({ className, ...props }: React.ComponentProps<'div'
                   autoSave='off'
                   max={100}
                   onChange={onChangeInput}
+                  autoFocus
                   required
                 />
               </div>
