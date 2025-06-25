@@ -10,7 +10,11 @@ export const authLogin = async (req: Request, res: Response) => {
 
     const logged = await login(email, password)
 
-    res.status(StatusCodes.OK).json(logged)
+    res.status(StatusCodes.OK).json({
+      id: logged._id,
+      displayName: logged.displayName,
+      email: logged.email,
+    })
   } catch (error) {
     if (error instanceof Error) {
       res.status(StatusCodes.NOT_FOUND).json({ message: error.message })
