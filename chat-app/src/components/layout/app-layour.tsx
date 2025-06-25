@@ -1,5 +1,5 @@
 import { AppSidebar } from '@/components/app-sidebar'
-import { SidebarProvider } from '@/components/ui/sidebar'
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import useAuthGuard from '@/hooks/use-auth-guard'
 
 interface IAppLayoutProps {
@@ -19,7 +19,7 @@ export default function AppLayout({ children }: Readonly<IAppLayoutProps>) {
       }
     >
       <AppSidebar variant='inset' />
-      {children}
+      <SidebarInset>{children}</SidebarInset>
     </SidebarProvider>
   )
 }
