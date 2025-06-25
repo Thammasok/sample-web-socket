@@ -25,7 +25,7 @@ const menus = [
     icon: IconHome2,
   },
   {
-    title: 'Public',
+    title: 'Global',
     url: '/public',
     icon: IconBrandWechat,
   },
