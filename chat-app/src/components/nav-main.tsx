@@ -3,6 +3,7 @@ import {
   IconBrandWechat,
   IconCirclePlusFilled,
   IconHash,
+  IconHome2,
   IconUserPlus,
   type Icon,
 } from '@tabler/icons-react'
@@ -15,25 +16,33 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
+import { useLocation } from 'react-router-dom'
+
+const menus = [
+  {
+    title: 'Overview',
+    url: '/app',
+    icon: IconHome2,
+  },
+  {
+    title: 'Public',
+    url: '/public',
+    icon: IconBrandWechat,
+  },
+  {
+    title: 'Mentions',
+    url: '/mentions',
+    icon: IconAt,
+  },
+  {
+    title: 'Topics',
+    url: '/topics',
+    icon: IconHash,
+  },
+]
 
 export function NavMain() {
-  const menus = [
-    {
-      title: 'Public',
-      url: '/public',
-      icon: IconBrandWechat,
-    },
-    {
-      title: 'Mentions',
-      url: '/mentions',
-      icon: IconAt,
-    },
-    {
-      title: 'Topics',
-      url: '/topics',
-      icon: IconHash,
-    },
-  ]
+  const location = useLocation()
 
   return (
     <SidebarGroup>
@@ -60,7 +69,11 @@ export function NavMain() {
         <SidebarMenu>
           {menus.map((menu) => (
             <SidebarMenuItem key={menu.title} onClick={() => (window.location.href = menu.url)}>
-              <SidebarMenuButton tooltip={menu.title}>
+              <SidebarMenuButton
+                tooltip={menu.title}
+                isActive={location.pathname === menu.url}
+                className='cursor-pointer'
+              >
                 {(menu.icon as Icon) && <menu.icon />}
                 <span>{menu.title}</span>
               </SidebarMenuButton>
