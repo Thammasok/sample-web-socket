@@ -33,11 +33,6 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
         return
       }
 
-      if (form.password === '123456') {
-        toast.error('Just kidding, please use a real password 😛')
-        return
-      }
-
       const response = await axios.post(`${config.apiUrl}/api/v1/login`, form)
 
       if (response.status === 200) {
@@ -101,7 +96,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
                   autoComplete='off'
                   autoSave='off'
                   onChange={onChangeInput}
-                  placeholder='My password is 123456 😎'
+                  placeholder='Password'
                   required
                 />
               </div>
