@@ -2,9 +2,9 @@ import { useEffect } from 'react'
 
 const useAuthGuard = () => {
   useEffect(() => {
-    console.log(window.location.pathname)
+    const link = ['/login', '/register', '/']
 
-    if (window.location.pathname === '/login' || window.location.pathname === '/register') {
+    if (link.includes(window.location.pathname)) {
       const user = localStorage.getItem('user')
 
       if (user) {
