@@ -18,7 +18,7 @@ export const authRegister = async (req: Request, res: Response) => {
     })
   } catch (error) {
     if (error instanceof Error) {
-      res.status(StatusCodes.NOT_FOUND).json({ message: error.message })
+      res.status(StatusCodes.BAD_REQUEST).json({ message: error.message })
     } else {
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Internal server error' })
     }
