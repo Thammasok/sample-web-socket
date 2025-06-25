@@ -40,8 +40,8 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
 
       const response = await axios.post(`${config.apiUrl}/api/v1/login`, form)
 
-      if (response.status === 201) {
-        localStorage.setItem('user', JSON.stringify(response.data.data))
+      if (response.status === 200) {
+        localStorage.setItem('user', JSON.stringify(response.data))
 
         toast.success('Account created successfully. You can now login.')
 
