@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { toast } from 'sonner'
 import { Link } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -6,19 +8,55 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) {
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  })
+
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({
+      ...form,
+      [e.target.id]: e.target.value,
+    })
+  }
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (form.email === '' || form.password === '') {
+      toast.error('Please fill all fields')
+      return
+    }
+
+    if (form.password === '123456') {
+      toast.error('Just kidding, please use a real password 😛')
+      return
+    }
+
+    console.log(form)
+  }
+
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
         <CardHeader>
+          <img src='/logo.png' alt='logo' className='mx-auto mb-6 w-20 h-20' />
           <CardTitle>Login to your account</CardTitle>
           <CardDescription>Enter your email below to login to your account</CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={onSubmit}>
             <div className='flex flex-col gap-6'>
               <div className='grid gap-3'>
                 <Label htmlFor='email'>Email</Label>
-                <Input id='email' type='email' placeholder='m@example.com' required />
+                <Input
+                  id='email'
+                  type='email'
+                  placeholder='m@example.com'
+                  autoComplete='off'
+                  autoSave='off'
+                  onChange={onChangeInput}
+                  required
+                />
               </div>
               <div className='grid gap-3'>
                 <div className='flex items-center'>
@@ -26,11 +64,22 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
                   <Link
                     to='#'
                     className='ml-auto inline-block text-sm underline-offset-4 hover:underline'
+                    onClick={() => {
+                      toast('Not implemented yet')
+                    }}
                   >
                     Forgot your password?
                   </Link>
                 </div>
-                <Input id='password' type='password' required />
+                <Input
+                  id='password'
+                  type='password'
+                  autoComplete='off'
+                  autoSave='off'
+                  onChange={onChangeInput}
+                  placeholder='My password is 123456 😎'
+                  required
+                />
               </div>
               <div className='flex flex-col gap-3'>
                 <Button type='submit' className='w-full'>
@@ -40,8 +89,8 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
             </div>
             <div className='mt-4 text-center text-sm'>
               Don&apos;t have an account?{' '}
-              <Link to='#' className='underline underline-offset-4'>
-                Sign up
+              <Link to='/register' className='underline underline-offset-4'>
+                Register
               </Link>
             </div>
           </form>
