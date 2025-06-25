@@ -10,6 +10,11 @@ interface IAccountDocument {
 const useAuthHook = () => {
   const [user, setUser] = useState<IAccountDocument | null>(null)
 
+  const logout = () => {
+    localStorage.removeItem('user')
+    window.location.href = '/login'
+  }
+
   useEffect(() => {
     const user = localStorage.getItem('user')
 
@@ -25,6 +30,7 @@ const useAuthHook = () => {
 
   return {
     user,
+    logout,
   }
 }
 
