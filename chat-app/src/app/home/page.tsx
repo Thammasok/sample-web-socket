@@ -1,4 +1,8 @@
+import useAuthGuard from '@/hooks/use-auth-guard'
+
 export default function HomePage() {
+  useAuthGuard()
+  
   return (
     <div className='flex flex-col gap-4 justify-center items-center h-screen w-screen'>
       <img src='/logo.png' alt='ChitChat' className='w-24 h-24 animate-bounce' />
