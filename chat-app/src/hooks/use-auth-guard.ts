@@ -8,7 +8,7 @@ const useAuthGuard = () => {
       const user = localStorage.getItem('user')
 
       if (user) {
-        window.location.href = '/'
+        window.location.href = '/app'
       }
     }
   }, [])

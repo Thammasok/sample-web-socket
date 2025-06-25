@@ -42,7 +42,7 @@ export function RegisterForm({ className, ...props }: React.ComponentProps<'div'
 
         toast.success('Account created successfully. You can now login.')
 
-        window.location.href = '/login'
+        window.location.href = '/app'
       }
     } catch (error) {
       if (error instanceof AxiosError) {
