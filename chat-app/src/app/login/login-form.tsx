@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios'
 import { useState } from 'react'
+import { Link } from 'react-router'
 import { toast } from 'sonner'
-import { Link } from 'react-router-dom'
 import { config } from '@/config'
 import { cn } from '@/lib/utils'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'

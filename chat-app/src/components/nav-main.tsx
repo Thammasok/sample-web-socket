@@ -16,7 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
 
 const menus = [
   {
@@ -26,7 +26,7 @@ const menus = [
   },
   {
     title: 'Global',
-    url: '/public',
+    url: '/global',
     icon: IconBrandWechat,
   },
   {
