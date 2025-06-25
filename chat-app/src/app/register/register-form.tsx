@@ -1,5 +1,8 @@
+import axios, { AxiosError } from 'axios'
+import { toast } from 'sonner'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { config } from '@/config'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -20,9 +23,37 @@ export function RegisterForm({ className, ...props }: React.ComponentProps<'div'
     })
   }
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log(form)
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault()
+
+      if (form.displayName === '' || form.email === '' || form.password === '') {
+        toast.error('Please fill all fields')
+        return
+      }
+
+      const response = await axios.post(`${config.apiUrl}/api/v1/register`, form)
+
+      if (response.status === 201) {
+        localStorage.setItem('user', JSON.stringify(response.data.data))
+
+        toast.success('Account created successfully. You can now login.')
+
+        window.location.href = '/login'
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.data.message.includes('E11000')) {
+          toast.error('Email already exists')
+        } else {
+          toast.error(error.response?.data.message)
+        }
+      } else if (error instanceof Error) {
+        toast.error(error.message)
+      } else {
+        toast.error('Something went wrong')
+      }
+    }
   }
 
   return (
@@ -71,6 +102,7 @@ export function RegisterForm({ className, ...props }: React.ComponentProps<'div'
                   autoComplete='off'
                   autoSave='off'
                   max={64}
+                  min={4}
                   onChange={onChangeInput}
                   required
                 />
