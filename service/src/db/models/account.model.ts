@@ -17,7 +17,6 @@ const accountModelSchema = new Schema<IAccountDocument>(
     displayName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String },
-    image: { type: String },
   },
   {
     timestamps: {
