@@ -1,0 +1,19 @@
+meta {
+  name: Register
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{SERVICE_URL}}/api/v1/register
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "displayName": "Thinktest",
+    "email": "thinktest@mail.com",
+    "password": "thinkpass1234"
+  }
+}
