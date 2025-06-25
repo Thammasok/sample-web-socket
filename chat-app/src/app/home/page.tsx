@@ -1,36 +1,19 @@
-import { AppSidebar } from '@/components/app-sidebar'
-import { ChartAreaInteractive } from '@/components/chart-area-interactive'
-import { DataTable } from '@/components/data-table'
-import { SectionCards } from '@/components/section-cards'
-import { SiteHeader } from '@/components/site-header'
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
-import data from './data.json'
-
 export default function HomePage() {
   return (
-    <SidebarProvider
-      style={
-        {
-          '--sidebar-width': 'calc(var(--spacing) * 72)',
-          '--header-height': 'calc(var(--spacing) * 12)',
-        } as React.CSSProperties
-      }
-    >
-      <AppSidebar variant='inset' />
-      <SidebarInset>
-        <SiteHeader />
-        <div className='flex flex-1 flex-col'>
-          <div className='@container/main flex flex-1 flex-col gap-2'>
-            <div className='flex flex-col gap-4 py-4 md:gap-6 md:py-6'>
-              <SectionCards />
-              <div className='px-4 lg:px-6'>
-                <ChartAreaInteractive />
-              </div>
-              <DataTable data={data} />
-            </div>
-          </div>
-        </div>
-      </SidebarInset>
-    </SidebarProvider>
+    <div className='flex flex-col gap-4 justify-center items-center h-screen w-screen'>
+      <img src='/logo.png' alt='ChitChat' className='w-24 h-24 animate-bounce' />
+      <h1 className='text-4xl font-bold'>Welcome to Chat App</h1>
+      <p>
+        Please{' '}
+        <a href='/login' className='text-blue-500 hover:text-blue-600 hover:underline'>
+          login
+        </a>{' '}
+        or{' '}
+        <a href='/register' className='text-blue-500 hover:text-blue-600 hover:underline'>
+          Create an account
+        </a>{' '}
+        to continue.
+      </p>
+    </div>
   )
 }
