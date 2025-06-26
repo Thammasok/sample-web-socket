@@ -1,22 +1,26 @@
 import { useEffect } from 'react'
 import useUserStore from '@/store/user-store'
+import { useLocation, useNavigate } from 'react-router'
 
 interface IAuthGuardProps {
   ignoreAuth?: string[]
   children: React.ReactNode
 }
 const AuthGuard = ({ ignoreAuth = [], children }: Readonly<IAuthGuardProps>) => {
+  const location = useLocation()
+  const navigate = useNavigate()
   const { user } = useUserStore()
 
   useEffect(() => {
-    if (ignoreAuth.includes(window.location.pathname)) {
-      console.log('User is not logged in, redirecting to /')
-      // if (user) {
-      //   console.log('User is logged in, redirecting to /app')
-      //   // window.location.href = '/app'
-      // }
+    if (!user) {
+      navigate('/login')
     }
-  }, [user])
+
+    if (ignoreAuth.length > 0 && ignoreAuth.includes(location.pathname)) {
+      navigate('/app')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return children
 }
