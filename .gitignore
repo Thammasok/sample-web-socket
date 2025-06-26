@@ -1,3 +1,8 @@
+sample/server/node_modules
+sample/server/.env
+sample/chat-app/node_modules
+sample/chat-app/.env
+
 service/node_modules
 service/.env
 
