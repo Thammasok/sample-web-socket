@@ -6,7 +6,7 @@ export default function HomePage() {
       <p>
         Please{' '}
         <a href='/login' className='text-blue-500 hover:text-blue-600 hover:underline'>
-          login
+          Login
         </a>{' '}
         or{' '}
         <a href='/register' className='text-blue-500 hover:text-blue-600 hover:underline'>
