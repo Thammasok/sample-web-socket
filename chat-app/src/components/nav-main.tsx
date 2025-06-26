@@ -16,7 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
-import { useLocation } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 
 const menus = [
   {
@@ -42,6 +42,7 @@ const menus = [
 ]
 
 export function NavMain() {
+  const navigate = useNavigate()
   const location = useLocation()
 
   return (
@@ -68,7 +69,7 @@ export function NavMain() {
         </SidebarMenu>
         <SidebarMenu>
           {menus.map((menu) => (
-            <SidebarMenuItem key={menu.title} onClick={() => (window.location.href = menu.url)}>
+            <SidebarMenuItem key={menu.title} onClick={() => navigate(menu.url)}>
               <SidebarMenuButton
                 tooltip={menu.title}
                 isActive={location.pathname === menu.url}

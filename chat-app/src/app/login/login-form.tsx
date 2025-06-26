@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { toast } from 'sonner'
 import { config } from '@/config'
 import { cn } from '@/lib/utils'
@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label'
 import useUserStore from '@/store/user-store'
 
 export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) {
+  const navigate = useNavigate()
   const { setUser } = useUserStore()
 
   const [form, setForm] = useState({
@@ -40,7 +41,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
 
         toast.success('Account created successfully. You can now login.')
 
-        window.location.href = '/app'
+        navigate('/app')
       }
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -101,7 +102,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
                 />
               </div>
               <div className='flex flex-col gap-3'>
-                <Button type='submit' className='w-full'>
+                <Button type='submit' className='w-full cursor-pointer'>
                   Login
                 </Button>
               </div>

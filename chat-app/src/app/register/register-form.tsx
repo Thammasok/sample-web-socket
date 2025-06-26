@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios'
 import { toast } from 'sonner'
 import { useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { config } from '@/config'
 import { cn } from '@/lib/utils'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 export function RegisterForm({ className, ...props }: React.ComponentProps<'div'>) {
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     displayName: '',
     email: '',
@@ -39,7 +40,7 @@ export function RegisterForm({ className, ...props }: React.ComponentProps<'div'
 
         toast.success('Account created successfully. You can now login.')
 
-        window.location.href = '/app'
+        navigate('/app')
       }
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -109,7 +110,7 @@ export function RegisterForm({ className, ...props }: React.ComponentProps<'div'
                 />
               </div>
               <div className='flex flex-col gap-3'>
-                <Button type='submit' className='w-full'>
+                <Button type='submit' className='w-full cursor-pointer'>
                   Register
                 </Button>
               </div>
