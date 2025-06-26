@@ -4,7 +4,7 @@ import cors from 'cors'
 import { createServer } from 'node:http'
 import { mongoDBConnection } from './db'
 import apiRouter from './rest/api'
-import socket from './socket/socket'
+import chatGlobal from './socket/chat-global'
 
 const app = express()
 const server = createServer(app)
@@ -18,7 +18,7 @@ app.use(express.json())
 mongoDBConnection()
 
 // Call socket setup
-const io = socket(server)
+const io = chatGlobal(server)
 
 // Call API routes
 apiRouter(app, io)
