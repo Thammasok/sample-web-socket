@@ -15,6 +15,11 @@ export default function GlobalChatPage() {
     setJoinChat(join)
   }
 
+  const joinChatRoom = () => {
+    console.log('connect Join room')
+    setJoinChat(true)
+  }
+
   return (
     <>
       <SiteHeader
@@ -29,7 +34,7 @@ export default function GlobalChatPage() {
       <div className='flex flex-1 flex-col'>
         <div className='@container/main flex flex-1 flex-col gap-2'>
           {/* Walcome message and join chat button */}
-          <JoinRoomContent join={joinChat} onClick={() => onClickJoinChat(true)} />
+          <JoinRoomContent join={joinChat} onClick={() => joinChatRoom()} />
 
           {/* Chat */}
           <div className={joinChat ? 'flex flex-1 flex-col gap-2' : 'hidden'}>
