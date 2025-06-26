@@ -13,10 +13,10 @@ const AuthGuard = ({ ignoreAuth = [], children }: Readonly<IAuthGuardProps>) => 
 
   useEffect(() => {
     if (!user) {
-      navigate('/login')
-    }
-
-    if (ignoreAuth.length > 0 && ignoreAuth.includes(location.pathname)) {
+      if (!ignoreAuth.includes(location.pathname)) {
+        navigate('/login')
+      }
+    } else if (user && ignoreAuth.length > 0 && ignoreAuth.includes(location.pathname)) {
       navigate('/app')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
