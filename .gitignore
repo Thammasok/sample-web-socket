@@ -1,11 +1,12 @@
+# Simple Project
 simple/server/node_modules
 simple/server/.env
 simple/chat-app/node_modules
 simple/chat-app/.env
 
-service/node_modules
-service/.env
-
+# Advance
+project/service/node_modules
+project/service/.env
 chat-app/node_modules
 chat-app/.env
 
