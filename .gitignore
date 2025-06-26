@@ -7,8 +7,8 @@ simple/chat-app/.env
 # Advance
 project/service/node_modules
 project/service/.env
-chat-app/node_modules
-chat-app/.env
+project/chat-app/node_modules
+project/chat-app/.env
 
 # Docker
 .dockers/*
