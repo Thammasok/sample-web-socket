@@ -1,11 +1,8 @@
 import { SectionCards } from '@/components/section-cards'
 import { SiteHeader } from '@/components/site-header'
 import { SidebarInset } from '@/components/ui/sidebar'
-import useAuthGuard from '@/hooks/use-auth-guard'
 
 export default function AppChatPage() {
-  useAuthGuard()
-
   return (
     <SidebarInset>
       <SiteHeader title='Global Chat' />

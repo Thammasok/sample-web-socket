@@ -1,4 +1,5 @@
 import AppLayout from '@/components/layout/app-layour'
+import FullLayout from '@/components/layout/full-layout'
 import HomePage from '@/app/home/page'
 import LoginPage from '@/app/login/page'
 import RegisterPage from '@/app/register/page'
@@ -19,14 +20,17 @@ export const routers = [
   },
   {
     path: '/',
+    layout: FullLayout,
     element: <HomePage />,
   },
   {
     path: '/login',
+    layout: FullLayout,
     element: <LoginPage />,
   },
   {
     path: '/register',
+    layout: FullLayout,
     element: <RegisterPage />,
   },
   {

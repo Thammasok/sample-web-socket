@@ -8,11 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import useAuthGuard from '@/hooks/use-auth-guard'
 
 export function RegisterForm({ className, ...props }: React.ComponentProps<'div'>) {
-  useAuthGuard()
-
   const [form, setForm] = useState({
     displayName: '',
     email: '',
