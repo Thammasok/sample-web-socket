@@ -1,7 +1,7 @@
-sample/server/node_modules
-sample/server/.env
-sample/chat-app/node_modules
-sample/chat-app/.env
+simple/server/node_modules
+simple/server/.env
+simple/chat-app/node_modules
+simple/chat-app/.env
 
 service/node_modules
 service/.env
