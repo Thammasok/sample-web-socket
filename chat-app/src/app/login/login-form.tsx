@@ -9,9 +9,12 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import useAuthGuard from '@/hooks/use-auth-guard'
+import useUserStore from '@/store/user-store'
 
 export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) {
   useAuthGuard()
+
+  const { setUser } = useUserStore()
 
   const [form, setForm] = useState({
     email: '',
@@ -36,7 +39,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
       const response = await axios.post(`${config.apiUrl}/api/v1/login`, form)
 
       if (response.status === 200) {
-        localStorage.setItem('user', JSON.stringify(response.data))
+        setUser(response.data)
 
         toast.success('Account created successfully. You can now login.')
 

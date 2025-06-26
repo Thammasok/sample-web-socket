@@ -21,11 +21,11 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar'
-import useAuthHook from '@/hooks/use-auth'
+import useUserStore from '@/store/user-store'
 
 export function NavUser() {
   const { isMobile } = useSidebar()
-  const { user, logout } = useAuthHook()
+  const { user, logout } = useUserStore()
 
   return (
     <SidebarMenu>
